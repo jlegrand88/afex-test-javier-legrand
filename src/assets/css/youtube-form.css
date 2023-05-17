@@ -1,0 +1,65 @@
+::placeholder {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    /* or 133% */
+    display: flex;
+    align-items: center;
+    color: #929293;
+}
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #136AE4;
+}
+
+.button:focus {
+    /* outline: auto; */
+    outline-color: #1157b9;
+    outline-style: solid;
+}
+.button {
+    width: 253px;
+    height: 57px;
+    /* Secundario 2 */
+    background: #136AE4;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2), 
+                0px 1px 4px rgba(0, 0, 0, 0.12),
+                0px 2px 2px rgba(0, 0, 0, 0.14);
+    border-radius: 0px 10px 10px 0px;
+    color: #FBFBFB;
+    /* Boton */
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21px;
+    border: none;
+    cursor: pointer;
+}
+.text-input {
+    display: block !important;
+    box-sizing: border-box;
+    width: 823px;
+    /* Blanco pleno */
+    background: #FFFFFF;
+    /* borde de campos */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px 0px 0px 5px;
+    padding-left: 23px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28.329px;
+    line-height: 38px;
+    /* identical to box height, or 133% */
+    /* display: flex;
+    align-items: center; */
+    color: #020202;
+}
