@@ -1,11 +1,17 @@
+
+████████╗███████╗███╗░░░███╗██████╗░██╗░░░░░░█████╗░████████╗███████╗
+╚══██╔══╝██╔════╝████╗░████║██╔══██╗██║░░░░░██╔══██╗╚══██╔══╝██╔════╝
+░░░██║░░░█████╗░░██╔████╔██║██████╔╝██║░░░░░███████║░░░██║░░░█████╗░░
+░░░██║░░░██╔══╝░░██║╚██╔╝██║██╔═══╝░██║░░░░░██╔══██║░░░██║░░░██╔══╝░░
+░░░██║░░░███████╗██║░╚═╝░██║██║░░░░░███████╗██║░░██║░░░██║░░░███████╗
+░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚══════╝
 <template>
-  <div>
     <div class="content-body">
       <div class="video-preview">
         <iframe 
           width="492"
           height="308"
-          src="https://www.youtube.com/embed/WW-9TcDTKa8"
+          :src="`https://www.youtube.com/embed/${videoListStore.selectedVideo.id}`"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -14,14 +20,41 @@
       </div>
       <div class="video-info">
         <div>
-          <span class="title">Mario vs the Giant NumbreBlocks 2 MAZE</span>
-          <p class="description">Mario will go inside a giant Numberblocks, will he survive? Subscribe to never miss new videos!</p>
+          <span class="title">{{ videoListStore.selectedVideo.title }}</span>
+          <p class="description">{{ videoListStore.selectedVideo.description }}</p>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
+░██████╗░█████╗░██████╗░██╗██████╗░████████╗░██████╗
+██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔════╝
+╚█████╗░██║░░╚═╝██████╔╝██║██████╔╝░░░██║░░░╚█████╗░
+░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░░╚═══██╗
+██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
+╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
+<script setup lang="ts">
+  import { useVideoListStore } from '@/stores/videoList'
+  
+  // ▒█▀▀▀█ ▀▀█▀▀ ░█▀▀█ ▀▀█▀▀ ▒█▀▀▀ ▒█▀▀▀█ 
+  // ░▀▀▀▄▄ ░▒█░░ ▒█▄▄█ ░▒█░░ ▒█▀▀▀ ░▀▀▀▄▄ 
+  // ▒█▄▄▄█ ░▒█░░ ▒█░▒█ ░▒█░░ ▒█▄▄▄ ▒█▄▄▄█
+  const videoListStore = useVideoListStore()
+
+  // ▒█░░░ ▀█▀ ▒█▀▀▀ ▒█▀▀▀ ▒█▀▀█ ▒█░░▒█ ▒█▀▀█ ▒█░░░ ▒█▀▀▀   ▒█░▒█ ▒█▀▀▀█ ▒█▀▀▀█ ▒█░▄▀ ▒█▀▀▀█ 
+  // ▒█░░░ ▒█░ ▒█▀▀▀ ▒█▀▀▀ ▒█░░░ ▒█▄▄▄█ ▒█░░░ ▒█░░░ ▒█▀▀▀   ▒█▀▀█ ▒█░░▒█ ▒█░░▒█ ▒█▀▄░ ░▀▀▀▄▄ 
+  // ▒█▄▄█ ▄█▄ ▒█░░░ ▒█▄▄▄ ▒█▄▄█ ░░▒█░░ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄   ▒█░▒█ ▒█▄▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█▄▄▄█
+  // onMounted(() => {
+  //   fillVideoList()
+  // })
+</script>
+
+░██████╗████████╗██╗░░░██╗██╗░░░░░███████╗░██████╗
+██╔════╝╚══██╔══╝╚██╗░██╔╝██║░░░░░██╔════╝██╔════╝
+╚█████╗░░░░██║░░░░╚████╔╝░██║░░░░░█████╗░░╚█████╗░
+░╚═══██╗░░░██║░░░░░╚██╔╝░░██║░░░░░██╔══╝░░░╚═══██╗
+██████╔╝░░░██║░░░░░░██║░░░███████╗███████╗██████╔╝
+╚═════╝░░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░
 <style scope>
   .title {
     width: 100%;
@@ -44,6 +77,7 @@
     line-height: 25px;
     color: #3C3E41;
     text-align: justify;
+    overflow-x: scroll;
   }
   .video-preview {
     display: flex;
@@ -60,6 +94,6 @@
     padding-top: 12px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 17px;
+    gap: 10px;
   }
 </style>

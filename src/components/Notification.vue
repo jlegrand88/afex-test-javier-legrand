@@ -6,27 +6,12 @@
 ░░░██║░░░███████╗██║░╚═╝░██║██║░░░░░███████╗██║░░██║░░░██║░░░███████╗
 ░░░╚═╝░░░╚══════╝╚═╝░░░░░╚═╝╚═╝░░░░░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚══════╝
 <template>
-  <div class="cards-gallery">
-    <div
-      :key="video['_id']"
-      v-for="video in videoListStore.videoList"
-      class="card"
-      :style="{ background: `url(${video.thumbnails.medium.url})` }" 
-      @click="openPreview(video['_id'])"
-    >
-      <img 
-        class="delete-video justify-content-end" 
-        alt="Delete video"
-        src="../assets/images/delete-video.png"
-        @click.stop="remove(video['_id'])"
-      >
+  <div>
+    <div>
+      {{ modalStore.message }}
     </div>
   </div>
-  <ModalComponent v-if="modalStore.showPreviewModal">
-    <VideoPreview />
-  </ModalComponent>
 </template>
-
 
 ░██████╗░█████╗░██████╗░██╗██████╗░████████╗░██████╗
 ██╔════╝██╔══██╗██╔══██╗██║██╔══██╗╚══██╔══╝██╔════╝
@@ -35,47 +20,12 @@
 ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 <script setup lang="ts">
-  import { onMounted } from 'vue'
   import { useModalStore } from '@/stores/modal'
-  import { useVideoListStore } from '@/stores/videoList'
-  import ModalComponent from './ModalComponent.vue'
-  import VideoPreview from './VideoPreview.vue'
-  import { getVideoList, removeVideo } from '../services/API/videoListAPI.js'
 
   // ▒█▀▀▀█ ▀▀█▀▀ ░█▀▀█ ▀▀█▀▀ ▒█▀▀▀ ▒█▀▀▀█ 
   // ░▀▀▀▄▄ ░▒█░░ ▒█▄▄█ ░▒█░░ ▒█▀▀▀ ░▀▀▀▄▄ 
   // ▒█▄▄▄█ ░▒█░░ ▒█░▒█ ░▒█░░ ▒█▄▄▄ ▒█▄▄▄█
   const modalStore = useModalStore()
-  const videoListStore = useVideoListStore()
-
-  // ▒█▀▀▀ ▒█░▒█ ▒█▄░▒█ ▒█▀▀█ ▀▀█▀▀ ▀█▀ ▒█▀▀▀█ ▒█▄░▒█ ▒█▀▀▀█ 
-  // ▒█▀▀▀ ▒█░▒█ ▒█▒█▒█ ▒█░░░ ░▒█░░ ▒█░ ▒█░░▒█ ▒█▒█▒█ ░▀▀▀▄▄ 
-  // ▒█░░░ ░▀▄▄▀ ▒█░░▀█ ▒█▄▄█ ░▒█░░ ▄█▄ ▒█▄▄▄█ ▒█░░▀█ ▒█▄▄▄█
-  const fillVideoList = async () => {
-    await getVideoList().then( (response: any) => {
-      videoListStore.setVideoList(JSON.parse(response.data.body))
-    })
-  }
-
-  const openPreview = (id: String) : void => {
-    const [ selectedVideo ] = videoListStore.videoList.filter(obj => obj['_id'] == id)
-    videoListStore.setSelectedVideo(selectedVideo)
-    modalStore.togglePreviewModal()
-  }
-
-  const remove = (id) => {
-    removeVideo(id).finally( () => {
-      const newList = videoListStore.videoList.filter(obj => obj['_id'] !== id)
-      videoListStore.setVideoList(newList)
-    })
-  }
-
-  // ▒█░░░ ▀█▀ ▒█▀▀▀ ▒█▀▀▀ ▒█▀▀█ ▒█░░▒█ ▒█▀▀█ ▒█░░░ ▒█▀▀▀   ▒█░▒█ ▒█▀▀▀█ ▒█▀▀▀█ ▒█░▄▀ ▒█▀▀▀█ 
-  // ▒█░░░ ▒█░ ▒█▀▀▀ ▒█▀▀▀ ▒█░░░ ▒█▄▄▄█ ▒█░░░ ▒█░░░ ▒█▀▀▀   ▒█▀▀█ ▒█░░▒█ ▒█░░▒█ ▒█▀▄░ ░▀▀▀▄▄ 
-  // ▒█▄▄█ ▄█▄ ▒█░░░ ▒█▄▄▄ ▒█▄▄█ ░░▒█░░ ▒█▄▄█ ▒█▄▄█ ▒█▄▄▄   ▒█░▒█ ▒█▄▄▄█ ▒█▄▄▄█ ▒█░▒█ ▒█▄▄▄█
-  onMounted(() => {
-    fillVideoList()
-  })
 </script>
 
 ░██████╗████████╗██╗░░░██╗██╗░░░░░███████╗░██████╗
@@ -85,23 +35,5 @@
 ██████╔╝░░░██║░░░░░░██║░░░███████╗███████╗██████╔╝
 ╚═════╝░░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚══════╝╚═════╝░
 <style scoped>
-  .cards-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 63px;
-    margin-top: 50px;
-  }
-  .card {
-    margin-top:32px;
-    width: 263px;
-    height: 150px;
-    cursor: pointer;
-  }
 
-  .delete-video {
-    width: 24px;
-    height: 24px;
-    padding: 8px;
-    float: right;
-  }
 </style>
