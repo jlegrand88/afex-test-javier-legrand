@@ -17,6 +17,5 @@ export const saveVideoList = ( id, title, description, thumbnails ) => {
 }
 
 export const removeVideo = (id) => (
-  // apiClient.delete(RESOURCE,{ id })
   apiClient.delete(`${RESOURCE}?id=${id}`)
 )

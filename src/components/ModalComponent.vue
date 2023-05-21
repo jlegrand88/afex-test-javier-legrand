@@ -9,7 +9,7 @@
   <div class="modal">
     <div class="modal-content">
       <div class="row">
-        <img class="close-modal" alt="Close modal" src="../assets/images/close-modal.png" @click="modalStore.togglePreviewModal">
+        <img v-if="!loadingStore.isLoading" class="close-modal" alt="Close modal" src="../assets/images/close-modal.png" @click="modalStore.closeModal">
       </div>
       <slot></slot>
     </div>
@@ -22,14 +22,15 @@
 ░╚═══██╗██║░░██╗██╔══██╗██║██╔═══╝░░░░██║░░░░╚═══██╗
 ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
-<script setup>
-  import { onMounted } from 'vue'
+<script setup lang="ts">
   import { useModalStore } from '@/stores/modal'
+  import { useLoadingStore } from '@/stores/loading'
 
   
   // ▒█▀▀▀█ ▀▀█▀▀ ░█▀▀█ ▀▀█▀▀ ▒█▀▀▀ ▒█▀▀▀█ 
   // ░▀▀▀▄▄ ░▒█░░ ▒█▄▄█ ░▒█░░ ▒█▀▀▀ ░▀▀▀▄▄ 
   // ▒█▄▄▄█ ░▒█░░ ▒█░▒█ ░▒█░░ ▒█▄▄▄ ▒█▄▄▄█
+  const loadingStore = useLoadingStore()
   const modalStore = useModalStore()
 </script>
 

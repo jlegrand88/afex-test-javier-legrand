@@ -27,15 +27,16 @@
   import { saveVideoList } from '../services/API/videoListAPI.js';
   import { useVideoListStore } from '@/stores/videoList'
   import { useModalStore } from '@/stores/modal'
-
+  import { useLoadingStore } from '@/stores/loading'
 
   // ▒█▀▀▀█ ▀▀█▀▀ ░█▀▀█ ▀▀█▀▀ ▒█▀▀▀ ▒█▀▀▀█ 
   // ░▀▀▀▄▄ ░▒█░░ ▒█▄▄█ ░▒█░░ ▒█▀▀▀ ░▀▀▀▄▄ 
   // ▒█▄▄▄█ ░▒█░░ ▒█░▒█ ░▒█░░ ▒█▄▄▄ ▒█▄▄▄█
   const videoURL = ref('')
-  const videoInfoDoc = ref('')
+  const videoInfoDoc = ref({})
   const videoListStore = useVideoListStore()
   const modalStore = useModalStore()
+  const loadingStore = useLoadingStore()
 
   // ▒█▀▀▀ ▒█░▒█ ▒█▄░▒█ ▒█▀▀█ ▀▀█▀▀ ▀█▀ ▒█▀▀▀█ ▒█▄░▒█ ▒█▀▀▀█ 
   // ▒█▀▀▀ ▒█░▒█ ▒█▒█▒█ ▒█░░░ ░▒█░░ ▒█░ ▒█░░▒█ ▒█▒█▒█ ░▀▀▀▄▄ 
@@ -46,35 +47,65 @@
     const id = urlParams.get('v');
     return id || urlObj.pathname.substring(1);
   }
+  const checkDomain = (url: string): boolean => {
+    try {
+      const urlObj = new URL(url)
+      console.log(urlObj.hostname)
+      const allowedDomains = [/^youtu\.be$/, /^youtube\.com$/, /^www.youtu\.be$/, /^www.youtube\.com$/]
+      for (const domain of allowedDomains) {
+        if ( domain.test(urlObj.hostname) ) {
+          return true;
+        }
+      }
+      return false;
+    } catch (error) {
+      return false
+    }
+  }
 
   const submitVideo = () => {
-    const videoId = getVideoId()
-    const youtubeEndpoint = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=AIzaSyBPdE_oUlVk4NTwyygKjnfn8UIF95pORgg&part=snippet`
-    axios.get( youtubeEndpoint ).then( response => {
-      [ videoInfoDoc.value ] = response.data.items
-      saveVideoList(
-        videoId,
-        videoInfoDoc.value.snippet.title,
-        videoInfoDoc.value.snippet.description,
-        videoInfoDoc.value.snippet.thumbnails
-      ).then(response => {
-        const newRecord = {
-          _id: response.data.body.insertedId,
-          id: videoId,
-          title: videoInfoDoc.value.snippet.title,
-          description: videoInfoDoc.value.snippet.description,
-          thumbnails: videoInfoDoc.value.snippet.thumbnails
-        }
-        const newList = [...videoListStore.videoList]
-        newList.unshift(newRecord)
-        videoListStore.setVideoList(newList)
-        videoURL.value = ''
-      }).finally( () => {
-        modalStore.setTitle('Success')
-        modalStore.setMessage('El video ha sido guardado')
-        modalStore.toggleNoticeModal()
-      })
-    })
+    loadingStore.setIsLoading(true)
+    if(checkDomain(videoURL.value)) {
+      const videoId = getVideoId()
+      if (videoId) {
+        const youtubeAPIEndpoint = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=AIzaSyBPdE_oUlVk4NTwyygKjnfn8UIF95pORgg&part=snippet`
+        axios.get( youtubeAPIEndpoint ).then( response => {
+          if( response.data.items.length ) {
+            [ videoInfoDoc.value ] = response.data.items
+            saveVideoList(
+              videoId,
+              videoInfoDoc.value.snippet.title,
+              videoInfoDoc.value.snippet.description,
+              videoInfoDoc.value.snippet.thumbnails
+            ).then(response => {
+              const newRecord = {
+                _id: response.data.body.insertedId,
+                id: videoId,
+                title: videoInfoDoc.value.snippet.title,
+                description: videoInfoDoc.value.snippet.description,
+                thumbnails: videoInfoDoc.value.snippet.thumbnails
+              }
+              const newList = [...videoListStore.videoList]
+              newList.unshift(newRecord)
+              videoListStore.setVideoList(newList)
+              videoURL.value = ''
+            }).finally( () => {
+              loadingStore.setIsLoading(false)
+              modalStore.openNoticeModal('success', 'El video ha sido guardado!')
+            })
+          } else {
+            loadingStore.setIsLoading(false)
+            modalStore.openNoticeModal('error', 'No se encuentra informacion sobre el video, compruebe que la URL es la correcta!')
+          }
+        })
+      } else {
+        loadingStore.setIsLoading(false)
+        modalStore.openNoticeModal('error', 'La URL no contiene el ID del video o esta malformada!')
+      }
+    } else {
+      loadingStore.setIsLoading(false)
+      modalStore.openNoticeModal('error', 'La URL no es valida, solo se admiten los dominios youtube.com u youtu.be!')
+    }
   }
 </script>
 

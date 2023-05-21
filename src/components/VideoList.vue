@@ -36,6 +36,7 @@
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 <script setup lang="ts">
   import { onMounted } from 'vue'
+  import { useLoadingStore } from '@/stores/loading'
   import { useModalStore } from '@/stores/modal'
   import { useVideoListStore } from '@/stores/videoList'
   import ModalComponent from './ModalComponent.vue'
@@ -47,26 +48,31 @@
   // ▒█▄▄▄█ ░▒█░░ ▒█░▒█ ░▒█░░ ▒█▄▄▄ ▒█▄▄▄█
   const modalStore = useModalStore()
   const videoListStore = useVideoListStore()
+  const loadingStore = useLoadingStore()
 
   // ▒█▀▀▀ ▒█░▒█ ▒█▄░▒█ ▒█▀▀█ ▀▀█▀▀ ▀█▀ ▒█▀▀▀█ ▒█▄░▒█ ▒█▀▀▀█ 
   // ▒█▀▀▀ ▒█░▒█ ▒█▒█▒█ ▒█░░░ ░▒█░░ ▒█░ ▒█░░▒█ ▒█▒█▒█ ░▀▀▀▄▄ 
   // ▒█░░░ ░▀▄▄▀ ▒█░░▀█ ▒█▄▄█ ░▒█░░ ▄█▄ ▒█▄▄▄█ ▒█░░▀█ ▒█▄▄▄█
   const fillVideoList = async () => {
+    loadingStore.setIsLoading(true)
     await getVideoList().then( (response: any) => {
-      videoListStore.setVideoList(JSON.parse(response.data.body))
-    })
+      videoListStore.setVideoList(JSON.parse(response.data.body).reverse())
+    }).finally(() => loadingStore.setIsLoading(false) )
   }
 
   const openPreview = (id: String) : void => {
     const [ selectedVideo ] = videoListStore.videoList.filter(obj => obj['_id'] == id)
     videoListStore.setSelectedVideo(selectedVideo)
-    modalStore.togglePreviewModal()
+    modalStore.openPreviewModal()
   }
 
   const remove = (id) => {
+    loadingStore.setIsLoading(true)
     removeVideo(id).finally( () => {
       const newList = videoListStore.videoList.filter(obj => obj['_id'] !== id)
       videoListStore.setVideoList(newList)
+      loadingStore.setIsLoading(false)
+      modalStore.openNoticeModal('success', 'El video ha sido eliminado!')
     })
   }
 
