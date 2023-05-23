@@ -7,13 +7,16 @@
 }
 
 .justify-content-center {
+    display: flex;
     justify-content: center;
 }
 .justify-content-start {
+    display: flex;
     justify-content: start;
 }
 
 .justify-content-end {
+    display: flex;
     justify-content: end;
 }
 
