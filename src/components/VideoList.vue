@@ -8,10 +8,10 @@
 <template>
   <div class="cards-gallery">
     <div
-      :key="video['_id']"
       v-for="video in videoListStore.videoList"
+      :key="video['_id']"
       class="card"
-      :style="{ background: `url(${video.thumbnails.medium.url})` }" 
+      :style="{ background: (video.thumbnails) ? `url(${video.thumbnails.medium.url})` : 'gray' }" 
       @click="openPreview(video['_id'])"
     >
       <img 

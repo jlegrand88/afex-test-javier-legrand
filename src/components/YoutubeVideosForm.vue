@@ -22,9 +22,8 @@
 ██████╔╝╚█████╔╝██║░░██║██║██║░░░░░░░░██║░░░██████╔╝
 ╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝╚═╝░░░░░░░░╚═╝░░░╚═════╝░
 <script setup lang="ts">
-  import { ref, onMounted, watch } from 'vue'
-  import axios from 'axios';
-  import { saveVideoList } from '../services/API/videoListAPI.js';
+  import { ref } from 'vue'
+  import { saveVideoList } from '../services/API/videoListAPI.js'
   import { useVideoListStore } from '@/stores/videoList'
   import { useModalStore } from '@/stores/modal'
   import { useLoadingStore } from '@/stores/loading'
@@ -68,35 +67,15 @@
     if(checkDomain(videoURL.value)) {
       const videoId = getVideoId()
       if (videoId) {
-        const youtubeAPIEndpoint = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&key=AIzaSyBPdE_oUlVk4NTwyygKjnfn8UIF95pORgg&part=snippet`
-        axios.get( youtubeAPIEndpoint ).then( response => {
-          if( response.data.items.length ) {
-            [ videoInfoDoc.value ] = response.data.items
-            saveVideoList(
-              videoId,
-              videoInfoDoc.value.snippet.title,
-              videoInfoDoc.value.snippet.description,
-              videoInfoDoc.value.snippet.thumbnails
-            ).then(response => {
-              const newRecord = {
-                _id: response.data.body.insertedId,
-                id: videoId,
-                title: videoInfoDoc.value.snippet.title,
-                description: videoInfoDoc.value.snippet.description,
-                thumbnails: videoInfoDoc.value.snippet.thumbnails
-              }
-              const newList = [...videoListStore.videoList]
-              newList.unshift(newRecord)
-              videoListStore.setVideoList(newList)
-              videoURL.value = ''
-            }).finally( () => {
-              loadingStore.setIsLoading(false)
-              modalStore.openNoticeModal('success', 'El video ha sido guardado!')
-            })
-          } else {
-            loadingStore.setIsLoading(false)
-            modalStore.openNoticeModal('error', 'No se encuentra informacion sobre el video, compruebe que la URL es la correcta!')
-          }
+        saveVideoList(videoId).then(response => {
+          const newRecord = JSON.parse(response.data.body)
+          const newList = [...videoListStore.videoList]
+          newList.unshift(newRecord)
+          videoListStore.setVideoList(newList)
+          videoURL.value = ''
+        }).finally( () => {
+          loadingStore.setIsLoading(false)
+          modalStore.openNoticeModal('success', 'El video ha sido guardado!')
         })
       } else {
         loadingStore.setIsLoading(false)

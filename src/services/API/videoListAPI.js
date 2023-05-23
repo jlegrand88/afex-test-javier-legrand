@@ -6,12 +6,9 @@ export const getVideoList = () => (
   apiClient.get(RESOURCE, { operacionId: 'video-list.list' })
 )
 
-export const saveVideoList = ( id, title, description, thumbnails ) => {
+export const saveVideoList = ( id ) => {
   return apiClient.post(RESOURCE,{
-      id: id,
-      title: title,
-      description: description,
-      thumbnails: thumbnails
+      id: id
     }, { operacionId: 'video-list.store' }
   )
 }
