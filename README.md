@@ -6,6 +6,10 @@
 
 Este repositorio contiene el código fuente y la documentación para un álbum online de videos de YouTube. El proyecto utiliza Vue 3 con Composition API para el frontend y Node.js con AWS para el backend. Permite pegar enlaces de videos de YouTube, guardarlos en una base de datos y visualizarlos en una cuadrícula con miniaturas e información detallada. También permite reproducir y eliminar los videos guardados.
 
+## Demo con deploy en GH-Pages
+
+[Sitio web con la prueba realizada](https://jlegrand88.github.io/afex-test-jlegrand-page/)
+
 https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328
 
 ## Contenido del Repositorio
