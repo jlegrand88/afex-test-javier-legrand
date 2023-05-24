@@ -4,7 +4,7 @@ A continuación se muestran algunas capturas de pantalla y videos de la aplicaci
 
 ## A - Guardar un video:
 
-
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/add-video-flow/(add-video-flow)1-home-view.png)
 
@@ -18,6 +18,12 @@ A continuación se muestran algunas capturas de pantalla y videos de la aplicaci
 ## B - Preview Video
 
 https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/d346ea4c-28ea-401a-b604-03a571c73345
+1. Entrar al home
+![Captura de pantalla 1](screenshots/frontend/preview-video-flow/(preview-video-flow)1-home-view.png)
+2. Hacer click sobre una miniatura de video de la lista disponmible
+![Captura de pantalla 2](screenshots/frontend/preview-video-flow/(preview-video-flow)2-click-card.png)
+3. Se abrira un modal con la informacion del video y el reproductor del mismo
+![Captura de pantalla 3](screenshots/frontend/preview-video-flow/(preview-video-flow)3-preview-modal.png)
 
 ## C - Intentar guardar un video que ya ha sido registrado de forma previa:
 
