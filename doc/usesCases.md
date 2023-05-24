@@ -2,7 +2,9 @@
 
 A continuación se muestran algunas capturas de pantalla y videos de la aplicación para los diferentres casos de uso: 
 
-## A - Listar documentos de los videos eeen la coleccion:
+## A - Guardar un video:
+
+
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/add-video-flow/(add-video-flow)1-home-view.png)
 
