@@ -4,7 +4,8 @@ A continuación se muestran algunas capturas de pantalla y videos de la aplicaci
 
 ## A - Guardar un video:
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/2be168ad-1f50-4d59-b5bb-0fa234edb115
+
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/add-video-flow/(add-video-flow)1-home-view.png)
 
