@@ -4,7 +4,8 @@ A continuación se muestran algunas capturas de pantalla y videos de la aplicaci
 
 ## A - Guardar un video:
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/2be168ad-1f50-4d59-b5bb-0fa234edb115
+
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/add-video-flow/(add-video-flow)1-home-view.png)
 
@@ -17,7 +18,8 @@ https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-
 
 ## B - Preview Video
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/d346ea4c-28ea-401a-b604-03a571c73345
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/dbdbcd93-9759-418c-af64-76dd6b2a2c40
+
 1. Entrar al home
 ![Captura de pantalla 1](screenshots/frontend/preview-video-flow/(preview-video-flow)1-home-view.png)
 2. Hacer click sobre una miniatura de video de la lista disponmible
@@ -27,7 +29,8 @@ https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/d346ea4c-
 
 ## C - Intentar guardar un video que ya ha sido registrado de forma previa:
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/21ac15ea-5085-4106-b198-4c589eb96a96
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/33050271-5a2b-4595-a991-d04c9e287087
+
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/already-exist-video-flow/(already-exist-flow)1-home-view.png)
 
@@ -40,7 +43,8 @@ https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/21ac15ea-
 
 ## D - Eliminar un video de la lista:
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/13433825-c9d0-4d21-9adb-9d7172126ab5
+https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/d913fb36-cd1e-4085-ac4b-d15a1aa212d4
+
 1. entrar al home
 ![Captura de pantalla 1](screenshots/frontend/delete-video-flow/(delete-video-flow)1-home-view.png)
 
