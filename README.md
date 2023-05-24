@@ -1,68 +1,46 @@
 # afex-test-javier-legrand
 
-This template should help get you started developing with Vue 3 in Vite.
+# Álbum Online de Videos de YouTube - Documentación
 
-## Recommended IDE Setup
+![CBienvenidos](doc/mr-gatsby.webp)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Este repositorio contiene el código fuente y la documentación para un álbum online de videos de YouTube. El proyecto utiliza Vue 3 con Composition API para el frontend y Node.js con AWS para el backend. Permite pegar enlaces de videos de YouTube, guardarlos en una base de datos y visualizarlos en una cuadrícula con miniaturas e información detallada. También permite reproducir y eliminar los videos guardados.
 
-## Type Support for `.vue` Imports in TS
+<iframe src="doc/videos/2_previewVideoFlow.mp4" height="400" width="600">
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Contenido del Repositorio
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+El repositorio contiene los siguientes archivos y carpetas principales:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- `backend/`: Contiene el código fuente del backend desarrollado en Node.js y AWS.
+- `frontend/`: Contiene el código fuente del frontend desarrollado con Vue 3 y Composition API.
+- `screenshots/`: Carpeta que contiene capturas de pantalla de la secuencia de los casos de uso del proyecto.
+- `videos/`: Carpeta que contiene videos con los casos de uso del proyecto.
+- `README.md`: Archivo de documentación principal.
 
-## Customize configuration
+## Instrucciones de Instalación
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Para ejecutar el proyecto en tu entorno local, sigue los pasos a continuación:
 
-## Project Setup
+1. Clona el repositorio en tu máquina local.
 
-```sh
-npm install
+```shell
+git clone https://github.com/tu-usuario/nombre-del-repositorio.git
 ```
 
-### Compile and Hot-Reload for Development
+2. Accede a [/backend-setup](doc/backend.md)  y sigue las instrucciones para configurar y ejecutar el backend.
 
-```sh
-npm run dev
-```
+3. Accede a [/frontend-setup](doc/frontend.md) y sigue las instrucciones para configurar y ejecutar el frontend.
 
-### Type-Check, Compile and Minify for Production
+4. Abre un navegador web y accede a la URL local correspondiente para ver y utilizar la aplicación.
 
-```sh
-npm run build
-```
+## Casos de Uso
+[casos de uso](doc/usesCases.md)
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Licencia
 
-```sh
-npm run test:unit
-```
+El proyecto se distribuye bajo la Licencia [MIT](https://opensource.org/licenses/MIT).
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+---
 
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+¡Eso es todo! Ahora puedes copiar y pegar este contenido en tu archivo README.md. No olvides reemplazar los campos de ejemplo con la información correspondiente a tu proyecto. Si tienes alguna pregunta adicional, no dudes en preguntar.

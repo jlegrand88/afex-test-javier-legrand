@@ -1,0 +1,19 @@
+
+Para ignorar el código de una función Lambda en un repositorio Git, puedes agregar las siguientes reglas al archivo .gitignore en la raíz de tu proyecto:
+
+bash
+Copy code
+# Código de función Lambda
+/.aws-sam/
+/.aws-sam.build/
+
+# Archivos generados durante el despliegue
+/.aws-sam/*.yaml
+/.aws-sam/*.json
+/.aws-sam/*.zip
+/.aws-sam/build/
+/.aws-sam/deployed-template.yaml
+/.aws-sam/deployed-stack.json
+rds-combined-ca-bundle.pem
+
+.env

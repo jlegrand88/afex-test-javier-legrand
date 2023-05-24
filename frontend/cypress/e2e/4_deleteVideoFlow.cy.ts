@@ -1,0 +1,15 @@
+describe('Delete video testing', () => {
+  it('visits the app root url', () => {
+    cy.viewport('macbook-16')
+    cy.visit('/')
+    cy.request('https://quwnhu3hf8.execute-api.us-east-2.amazonaws.com/test/video-list')
+    cy.screenshot('(delete-video-flow)1-home-view', { capture: 'runner'})
+    cy.contains('label', 'Añadir nuevo video')
+    cy.get('input#inputAdd').should('have.attr', 'placeholder', 'Añadir')
+    cy.get('input.button').should('have.attr', 'value', 'Añadir')
+    cy.get('#EqWfZspNY3c-delete-btn').click()
+    cy.screenshot('(delete-video-flow)2-click-delete', { capture: 'runner'})
+    cy.get('.notice-container').contains('div','El video ha sido eliminado!')
+    cy.get('.modal').screenshot('(delete-video-flow)3-success-message', { capture: 'runner'})
+  })
+})
