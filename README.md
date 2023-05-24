@@ -10,7 +10,7 @@ Este repositorio contiene el código fuente y la documentación para un álbum o
 
 [Sitio web con la prueba realizada](https://jlegrand88.github.io/afex-test-jlegrand-page/)
 
-https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328
+[https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/00db78af-d5bb-45d3-8fd2-5f695c3dd328](https://github.com/jlegrand88/afex-test-javier-legrand/assets/15996522/2be168ad-1f50-4d59-b5bb-0fa234edb115)
 
 ## Contenido del Repositorio
 
