@@ -81,8 +81,8 @@
     color: #3C3E41;
   }
   .description {
-    width: auto;
-    height: 75px;
+    width: 480px;
+    height: 150px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
